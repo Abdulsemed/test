@@ -36,6 +36,7 @@ function App() {
     <TestingAPICalls />
     <TestingStateChange />
     <TestWithMockData data={mockData} />
+    <LoginForm />
   </div>;
 }
 

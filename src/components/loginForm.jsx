@@ -1,10 +1,11 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 
 const LoginForm = ({submit}) =>{
     const [values, setValues] = useState({
         username: '',
         password:'',
     })
+    const [butStat, setButStat] = useState(true)
     const handleChange = (event)=>{
         setValues({
             ...values,
@@ -16,45 +17,14 @@ const LoginForm = ({submit}) =>{
         event.preventDefault()
         submit(values)
     }
-    document.addEventListener('DOMContentLoaded', function(e) {
-        const demoForm = document.getElementById('demoform');
-    
-        // Get the submit button element
-        const submitButton = demoForm.querySelector("button")
-    
-        FormValidation.formValidation(demoForm,{
-                fields: {
-                    username:{
-                        validators:{
-                            notEmpty:{
-                                message: "required"
-                            }
-                        }
-                    },
-                    password:{
-                        validators:{
-                            notEmpty:{
-                                message: "required"
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    fieldStatus: new FormValidation.plugins.FieldStatus({
-                        onStatusChanged: function(areFieldsValid) {
-                            areFieldsValid
-                                // Enable the submit button
-                                // so user has a chance to submit the form again
-                                ? submitButton.removeAttribute('disabled')
-                                // Disable the submit button
-                                : submitButton.setAttribute('disabled', 'disabled');
-                        }
-                    }),
-                },
-            }
-        );
-    });
-
+    useEffect(()=>{
+        if (values.username!="" && values.password!=""){
+            setButStat(false)
+        }
+        else{
+            setButStat(true)
+        }
+    },[values])
 
     return (
         
@@ -63,7 +33,7 @@ const LoginForm = ({submit}) =>{
             <input id="username" onChange={handleChange} value={values.username}/>
             <label htmlFor="password">password</label>
             <input id="password" onChange={handleChange} value={values.password}/>
-            <button type="submit" disabled={true} >submit</button>
+            <button type="submit" disabled={butStat} >submit</button>
         </form>
     )
 }
