@@ -1,0 +1,17 @@
+[
+    {
+        "src": "favicon.ico",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "name": "Abel"
+    },
+    {
+        "src": "logo192.png",
+        "name": "Abdi",
+        "sizes": "192x192"
+    },
+    {
+        "src": "logo512.png",
+        "name": "Abenezer",
+        "sizes": "512x512"
+    }
+]
